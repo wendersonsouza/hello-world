@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import React ,{Component} from 'react';
 import './App.css';
+import Person from './Person.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class  App extends Component {
+
+  state = {
+        persons: [
+            {name: 'Wenderson', age: 35 },
+            {name: 'Tabatha', age: 30 }
+        ]
+    }
+
+    switchHandlerName = () =>{
+        console.log('Was clicked');
+
+    this.setState({
+        persons:[
+               {name: 'Wenderson Souza', age: 35 },
+               {name: 'Tabatha Regina', age: 30 }
+           ]
+           });
+    }
+
+
+    render(){
+      return (
+        <div className="App">
+          <h1> Hi , I am react App</h1>
+          <p> This really workinbg </p>
+          <button onClick={this.switchHandlerName}> Switch Name</button>
+          <Person name={this.state.persons[0].name} age={this.state.persons[0].age}> My hobbies: playing football</Person>
+          <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
+        </div>
+      )};
+
+  }
 
 export default App;
+
+
