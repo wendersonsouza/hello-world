@@ -3,7 +3,7 @@ import classes from'./App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/cockpit/Cockpit';
 import withClass from '../hoc/withClass';
-import Aux from '../hoc/Aux';
+import Aux from '../hoc/aux';
 
 
 
@@ -16,7 +16,8 @@ class  App extends Component {
         ],
         showPerson: false,
         otherState: 'some other value',
-        showCockpit: true
+        showCockpit: true,
+        authenticated: false
     }
 
      static getDerivedStateFromProps(props, state){
@@ -69,13 +70,20 @@ class  App extends Component {
       this.setState({persons: persons});
     }
 
+    loginHandler = () =>{
+              this.setState({ authenticated : true });
+              alert('passou');
+
+    }
+
     render(){
 
       let persons = null;
       if (this.state.showPerson){
           persons =  <Persons persons={this.state.persons}
                               changed={this.nameChangedHandler}
-                              clicked={this.deletePersonHandler} />;
+                              clicked={this.deletePersonHandler}
+                              isAuthenticated={this.state.authenticated}/>;
         }
       return (
             <Aux>
@@ -86,7 +94,9 @@ class  App extends Component {
                 { this.state.showCockpit ?
                 <Cockpit showPerson={this.state.showPerson}
                          personsLength={this.state.persons.length}
-                              clicked={this.togglePersonHandler}/>
+                         clicked={this.togglePersonHandler}
+                         login={this.loginHandler}
+                              />
                 : null}
               {persons}
             </Aux>

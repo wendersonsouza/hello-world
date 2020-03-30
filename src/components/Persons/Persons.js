@@ -5,7 +5,7 @@ class Persons extends Component{
 // static getDerivedStateFromProps(props, state){
 //         console.log('[Persons.js] getDerivedStateFromProps')
 //         return state;
-// }
+//}
 shouldComponentUpdate(nextProps,nextState){
         console.log('[Persons.js] shouldComponentUpdate');
         if(nextProps.persons !== this.props.persons){
@@ -37,7 +37,8 @@ render(){
                                     name={person.name}
                                     age={person.age}
                                     key={person.id}
-                                    changed={( event )=> this.props.changed(event, person.id)}/>
+                                    changed={( event )=> this.props.changed(event, person.id)}
+                                    isAuth={this.props.isAuthenticated}/>
                         });
     }
 }
